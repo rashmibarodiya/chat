@@ -1,5 +1,6 @@
 generator client {
   provider = "prisma-client-js"
+ 
 }
 
 datasource db {
@@ -8,24 +9,37 @@ datasource db {
 }
 
 model Message {
-  id         Int      @id @default(autoincrement())
-  senderId   Int
-  sender     User     @relation(fields: [senderId], references: [id], name: "SentMessages")
-  receiverId Int
-  receiver   User     @relation(fields: [receiverId], references: [id], name: "ReceivedMessages")
-  message    String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id            Int         @id @default(autoincrement())
+  senderId      Int
+  sender        User        @relation(fields: [senderId], references: [id], name: "SentMessages")
+  receiverId    Int
+  receiver      User        @relation(fields: [receiverId], references: [id], name: "ReceivedMessages")
+  message       String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  
+  conversationId Int?
+  conversation   Conversation? @relation(fields: [conversationId], references: [id])
 }
 
 model User {
-  id         Int      @id @default(autoincrement())
-  email      String   @unique
-  name       String?
-  profilePic String?
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id              Int          @id @default(autoincrement())
+  email           String       @unique
+  name            String?
+  profilePic      String?
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
   
-  sentMessages     Message[] @relation(name: "SentMessages")
-  receivedMessages Message[] @relation(name: "ReceivedMessages")
+  sentMessages     Message[]   @relation(name: "SentMessages")
+  receivedMessages Message[]   @relation(name: "ReceivedMessages")
+  
+  conversations    Conversation[] @relation("UserConversations")
+}
+
+model Conversation {
+  id            Int         @id @default(autoincrement())
+  participants  User[]      @relation("UserConversations")
+  messages      Message[]
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
