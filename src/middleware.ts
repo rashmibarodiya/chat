@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 
 const isPublicRoute = createRouteMatcher([
-    "signin", "/", "home"
+    "signin",'/sign-in', '/sign-up', "/", "home"
 ])
 
 export default clerkMiddleware((auth: any, req: NextRequest) => {
@@ -12,7 +12,7 @@ export default clerkMiddleware((auth: any, req: NextRequest) => {
 
     //not logged in
     if (!userId && !isPublicRoute(req)) {
-        url.pathname = '/';  
+        url.pathname = '/sign-in';  
         return NextResponse.redirect(url); 
     }
 })
