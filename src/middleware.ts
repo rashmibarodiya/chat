@@ -8,6 +8,7 @@ const isPublicRoute = createRouteMatcher([
     '/sign-up',
     '/',
     '/home',
+   "/api/webhooks/clerk"
 ]);
 
 const prisma = new PrismaClient();
@@ -24,6 +25,7 @@ export default clerkMiddleware(async (auth, req) => {
             console.log('Redirecting to sign-in');
             return NextResponse.redirect(url);
         }
+        console.log("ok i am here")
     } else {
         // User is logged in
         console.log('User is logged in:', userId);

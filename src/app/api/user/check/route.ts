@@ -18,7 +18,7 @@ export async function POST (req :NextRequest,res:NextResponse){
     
     
         if(user){
-            console.log("user found ",user)
+            console.log("user found^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ ",user)
             NextResponse.json({message:"user found successfully",user},{status:200})
     
         }
@@ -30,7 +30,7 @@ export async function POST (req :NextRequest,res:NextResponse){
                 }
             })
     
-            console.log("user created successfully ",user)
+            console.log("user created successfully @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@222",user)
             NextResponse.json({message:"user created successfully",user},{status:200})
         }
     }catch(e){

@@ -1,6 +1,6 @@
 // "use client";
 
-// import { SignIn } from '@clerk/nextjs';
+// import { SignUp } from '@clerk/nextjs';
 // import { useEffect, useState } from 'react';
 // import { useUser } from '@clerk/nextjs';
 
@@ -62,7 +62,8 @@
 //         console.log("User is not signed in, rendering SignIn component.");
 //         return (
 //             <div>
-//                 <SignIn />
+//                 this is signup
+//                 <SignUp />
 //             </div>
 //         );
 //     }
@@ -70,12 +71,12 @@
 //     console.log("User is signed in, nothing to render.");
 //     return null; // Render nothing if the user is signed in and ready
 // }
-import { SignIn } from '@clerk/nextjs';
+import { SignUp } from "@clerk/nextjs";
 
-export default function SignInfuntion() {
+export default function SignUpPage() {
   return (
     <div className="w-full h-screen flex items-center justify-center">
-      <SignIn />
+      <SignUp />
     </div>
   );
 }
